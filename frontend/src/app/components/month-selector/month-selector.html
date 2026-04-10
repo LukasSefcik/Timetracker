@@ -1,1 +1,17 @@
-<p>month-selector works!</p>
+<div class="flex items-center justify-center gap-4 py-3">
+  <button
+    (click)="prev()"
+    class="text-slate-400 hover:text-white text-xl px-2 cursor-pointer"
+  >
+    ◀
+  </button>
+  <span class="text-white font-semibold text-lg capitalize">
+    {{ displayMonth() }}
+  </span>
+  <button
+    (click)="next()"
+    class="text-slate-400 hover:text-white text-xl px-2 cursor-pointer"
+  >
+    ▶
+  </button>
+</div>
