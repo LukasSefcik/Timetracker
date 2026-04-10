@@ -1,0 +1,29 @@
+<div class="px-4 pt-4">
+  <h2 class="text-white text-lg font-semibold mb-6">Nastavenia</h2>
+
+  <div class="bg-slate-800 rounded-lg p-6">
+    <label class="block text-slate-400 text-sm mb-2">
+      Hodinová sadzba (€)
+    </label>
+    <div class="flex gap-3">
+      <input
+        type="number"
+        [ngModel]="hourlyRate()"
+        (ngModelChange)="hourlyRate.set($event)"
+        min="0"
+        step="1"
+        class="flex-1 bg-slate-700 text-white rounded px-3 py-2 border border-slate-600 focus:border-cyan-400 focus:outline-none"
+      />
+      <button
+        (click)="save()"
+        class="bg-sky-500 hover:bg-sky-600 text-white px-6 py-2 rounded font-medium cursor-pointer"
+      >
+        Uložiť
+      </button>
+    </div>
+
+    @if (saved()) {
+      <p class="text-green-400 text-sm mt-3">Uložené ✓</p>
+    }
+  </div>
+</div>
