@@ -1,5 +1,5 @@
 export interface Entry {
-  id: number;
+  id: string;
   date: string;
   hours: number;
 }

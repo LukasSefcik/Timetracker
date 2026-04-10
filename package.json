@@ -3,11 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "cd frontend && ng serve --proxy-config ../proxy.conf.json"
-  },
-  "devDependencies": {
-    "concurrently": "^9.1.0"
+    "dev": "cd frontend && ng serve",
+    "build": "cd frontend && ng build --configuration production"
   }
 }

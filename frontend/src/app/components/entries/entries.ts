@@ -20,7 +20,7 @@ export class Entries implements OnInit {
   newDate = signal(this.today());
   newHours = signal<number | null>(null);
 
-  editingId = signal<number | null>(null);
+  editingId = signal<string | null>(null);
   editDate = signal("");
   editHours = signal<number | null>(null);
 
@@ -70,7 +70,7 @@ export class Entries implements OnInit {
     this.editingId.set(null);
   }
 
-  deleteEntry(id: number) {
+  deleteEntry(id: string) {
     this.api.deleteEntry(id).subscribe(() => {
       this.loadEntries();
     });
