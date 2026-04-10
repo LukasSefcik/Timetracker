@@ -1,4 +1,5 @@
 import { Component, inject, signal, OnInit } from "@angular/core";
+import { DatePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ApiService } from "../../services/api.service";
 import { Entry } from "../../models/entry.model";
@@ -6,7 +7,7 @@ import { MonthSelector } from "../month-selector/month-selector";
 
 @Component({
   selector: "app-entries",
-  imports: [FormsModule, MonthSelector],
+  imports: [FormsModule, MonthSelector, DatePipe],
   templateUrl: "./entries.html",
   styles: [],
 })
