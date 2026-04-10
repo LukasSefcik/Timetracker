@@ -6,7 +6,7 @@
 <!-- Add form -->
 <div class="px-5 mb-5">
   <div class="bg-surface rounded-xl border border-rule p-4">
-    <div class="flex gap-3 items-end">
+    <div class="flex gap-3 mb-3">
       <div class="flex-1">
         <label class="block text-[11px] font-medium text-ink-faint uppercase tracking-wider mb-1.5">Dátum</label>
         <input
@@ -16,7 +16,7 @@
           class="w-full bg-cream border border-rule rounded-lg px-3 py-2.5 text-sm text-ink font-mono focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
         />
       </div>
-      <div class="w-20">
+      <div class="w-24 shrink-0">
         <label class="block text-[11px] font-medium text-ink-faint uppercase tracking-wider mb-1.5">Hodiny</label>
         <input
           type="number"
@@ -29,13 +29,13 @@
           class="w-full bg-cream border border-rule rounded-lg px-3 py-2.5 text-sm text-ink font-mono text-center focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
         />
       </div>
-      <button
-        (click)="addEntry()"
-        class="bg-accent hover:bg-accent/90 text-white h-[42px] px-5 rounded-lg font-medium text-sm cursor-pointer transition-colors active:scale-[0.97]"
-      >
-        Pridať
-      </button>
     </div>
+    <button
+      (click)="addEntry()"
+      class="w-full bg-accent hover:bg-accent/90 text-white py-2.5 rounded-lg font-medium text-sm cursor-pointer transition-colors active:scale-[0.98]"
+    >
+      Pridať
+    </button>
   </div>
 </div>
 
