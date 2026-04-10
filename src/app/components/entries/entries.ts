@@ -70,8 +70,9 @@ export class Entries implements OnInit {
     this.editingId.set(null);
   }
 
-  deleteEntry(id: string) {
-    this.api.deleteEntry(id).subscribe(() => {
+  deleteEntry(entry: Entry) {
+    if (!confirm(`Vymazať záznam ${entry.date} (${entry.hours}h)?`)) return;
+    this.api.deleteEntry(entry.id).subscribe(() => {
       this.loadEntries();
     });
   }
