@@ -49,6 +49,17 @@ input[type="date"] {
   appearance: none;
 }
 
+/* Prevent iOS Safari auto-zoom on input focus (triggers below 16px) */
+@supports (-webkit-touch-callout: none) {
+  input[type="date"],
+  input[type="number"],
+  input[type="text"],
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
 /* Remove number input spinners on mobile */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
