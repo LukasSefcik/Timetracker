@@ -1,11 +1,14 @@
 import express from "express";
 import cors from "cors";
+import db from "./db.js";
+import { createEntriesRouter } from "./routes/entries.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes will be added in subsequent tasks
+app.use("/api/entries", createEntriesRouter(db));
+
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok" });
 });
