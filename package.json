@@ -21,7 +21,7 @@
     ]
   },
   "private": true,
-  "packageManager": "npm@10.8.2",
+  "packageManager": "bun@1.3.10",
   "dependencies": {
     "@angular/common": "^21.0.0",
     "@angular/compiler": "^21.0.0",
@@ -44,5 +44,10 @@
     "tailwindcss": "^4.2.2",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
-  }
+  },
+  "trustedDependencies": [
+    "@firebase/util",
+    "@parcel/watcher",
+    "protobufjs"
+  ]
 }
