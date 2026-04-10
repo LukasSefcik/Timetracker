@@ -4,91 +4,106 @@
 />
 
 <!-- Add form -->
-<div class="flex gap-2 mb-4 px-4">
-  <input
-    type="date"
-    [ngModel]="newDate()"
-    (ngModelChange)="newDate.set($event)"
-    class="flex-1 bg-slate-800 text-white rounded px-3 py-2 border border-slate-600 focus:border-cyan-400 focus:outline-none"
-  />
-  <input
-    type="number"
-    [ngModel]="newHours()"
-    (ngModelChange)="newHours.set($event)"
-    placeholder="Hodiny"
-    step="0.5"
-    min="0"
-    max="24"
-    class="w-24 bg-slate-800 text-white rounded px-3 py-2 border border-slate-600 focus:border-cyan-400 focus:outline-none"
-  />
-  <button
-    (click)="addEntry()"
-    class="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded font-medium cursor-pointer"
-  >
-    Pridať
-  </button>
-</div>
-
-<!-- Entries list -->
-<div class="flex flex-col gap-1 px-4">
-  @for (entry of entries(); track entry.id) {
-    <div
-      class="flex items-center justify-between bg-slate-800 rounded px-3 py-2"
-    >
-      @if (editingId() === entry.id) {
+<div class="px-5 mb-5">
+  <div class="bg-surface rounded-xl border border-rule p-4">
+    <div class="flex gap-3 items-end">
+      <div class="flex-1">
+        <label class="block text-[11px] font-medium text-ink-faint uppercase tracking-wider mb-1.5">Dátum</label>
         <input
           type="date"
-          [ngModel]="editDate()"
-          (ngModelChange)="editDate.set($event)"
-          class="bg-slate-700 text-white rounded px-2 py-1 border border-slate-500 text-sm"
+          [ngModel]="newDate()"
+          (ngModelChange)="newDate.set($event)"
+          class="w-full bg-cream border border-rule rounded-lg px-3 py-2.5 text-sm text-ink font-mono focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
         />
+      </div>
+      <div class="w-20">
+        <label class="block text-[11px] font-medium text-ink-faint uppercase tracking-wider mb-1.5">Hodiny</label>
         <input
           type="number"
-          [ngModel]="editHours()"
-          (ngModelChange)="editHours.set($event)"
+          [ngModel]="newHours()"
+          (ngModelChange)="newHours.set($event)"
+          placeholder="0"
           step="0.5"
           min="0"
           max="24"
-          class="w-20 bg-slate-700 text-white rounded px-2 py-1 border border-slate-500 text-sm"
+          class="w-full bg-cream border border-rule rounded-lg px-3 py-2.5 text-sm text-ink font-mono text-center focus:border-accent focus:ring-1 focus:ring-accent/20 focus:outline-none transition-colors"
         />
-        <div class="flex gap-1">
-          <button
-            (click)="saveEdit()"
-            class="text-green-400 hover:text-green-300 cursor-pointer px-1"
-          >
-            ✓
-          </button>
-          <button
-            (click)="cancelEdit()"
-            class="text-slate-400 hover:text-white cursor-pointer px-1"
-          >
-            ✕
-          </button>
+      </div>
+      <button
+        (click)="addEntry()"
+        class="bg-accent hover:bg-accent/90 text-white h-[42px] px-5 rounded-lg font-medium text-sm cursor-pointer transition-colors active:scale-[0.97]"
+      >
+        Pridať
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Entries list -->
+<div class="px-5">
+  @for (entry of entries(); track entry.id) {
+    <div class="ledger-rule">
+      @if (editingId() === entry.id) {
+        <!-- Edit mode -->
+        <div class="flex items-center gap-3 py-3">
+          <input
+            type="date"
+            [ngModel]="editDate()"
+            (ngModelChange)="editDate.set($event)"
+            class="flex-1 bg-cream border border-rule rounded-lg px-2.5 py-2 text-sm font-mono text-ink focus:border-accent focus:outline-none"
+          />
+          <input
+            type="number"
+            [ngModel]="editHours()"
+            (ngModelChange)="editHours.set($event)"
+            step="0.5"
+            min="0"
+            max="24"
+            class="w-16 bg-cream border border-rule rounded-lg px-2 py-2 text-sm font-mono text-ink text-center focus:border-accent focus:outline-none"
+          />
+          <div class="flex gap-1">
+            <button
+              (click)="saveEdit()"
+              class="w-8 h-8 flex items-center justify-center rounded-full text-accent hover:bg-accent-light cursor-pointer transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+            <button
+              (click)="cancelEdit()"
+              class="w-8 h-8 flex items-center justify-center rounded-full text-ink-faint hover:bg-cream-dark cursor-pointer transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
         </div>
       } @else {
-        <span class="text-slate-200 text-sm">{{ entry.date | date:'dd.MM.yyyy' }}</span>
-        <span class="text-cyan-400 text-sm font-medium"
-          >{{ entry.hours }}h</span
-        >
-        <div class="flex gap-1">
-          <button
-            (click)="startEdit(entry)"
-            class="text-slate-400 hover:text-white cursor-pointer px-1"
-          >
-            ✏️
-          </button>
-          <button
-            (click)="deleteEntry(entry.id)"
-            class="text-slate-400 hover:text-red-400 cursor-pointer px-1"
-          >
-            🗑️
-          </button>
+        <!-- View mode -->
+        <div class="flex items-center justify-between py-3 group">
+          <span class="text-sm text-ink-light font-mono tabular-nums">{{ entry.date | date:'dd.MM.yyyy' }}</span>
+          <div class="flex items-center gap-3">
+            <span class="text-sm font-mono font-medium text-accent tabular-nums">{{ entry.hours }}h</span>
+            <div class="flex gap-0.5">
+              <button
+                (click)="startEdit(entry)"
+                class="w-7 h-7 flex items-center justify-center rounded-full text-ink-faint hover:text-ink hover:bg-cream-dark cursor-pointer transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+              </button>
+              <button
+                (click)="deleteEntry(entry.id)"
+                class="w-7 h-7 flex items-center justify-center rounded-full text-ink-faint hover:text-danger hover:bg-danger-light cursor-pointer transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
       }
     </div>
   } @empty {
-    <p class="text-slate-500 text-center py-4">
-      Žiadne záznamy pre tento mesiac
-    </p>
+    <div class="text-center py-12">
+      <p class="text-ink-faint text-sm font-mono">Žiadne záznamy</p>
+      <p class="text-ink-faint/60 text-xs mt-1">Pridajte prvý záznam vyššie</p>
+    </div>
   }
 </div>

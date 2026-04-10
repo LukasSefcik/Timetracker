@@ -1,17 +1,17 @@
-<div class="flex items-center justify-center gap-4 py-3">
+<div class="flex items-center justify-between px-5 py-4">
   <button
     (click)="prev()"
-    class="text-slate-400 hover:text-white text-xl px-2 cursor-pointer"
+    class="w-10 h-10 flex items-center justify-center rounded-full text-ink-light hover:text-ink hover:bg-cream-dark cursor-pointer transition-colors active:scale-95"
   >
-    ◀
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
   </button>
-  <span class="text-white font-semibold text-lg capitalize">
+  <span class="font-mono text-lg font-medium text-ink capitalize tracking-tight">
     {{ displayMonth() }}
   </span>
   <button
     (click)="next()"
-    class="text-slate-400 hover:text-white text-xl px-2 cursor-pointer"
+    class="w-10 h-10 flex items-center justify-center rounded-full text-ink-light hover:text-ink hover:bg-cream-dark cursor-pointer transition-colors active:scale-95"
   >
-    ▶
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
   </button>
 </div>

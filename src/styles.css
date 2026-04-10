@@ -1,1 +1,54 @@
 @import "tailwindcss";
+
+@theme {
+  --color-cream: #FDFBF7;
+  --color-cream-dark: #F5F0E8;
+  --color-surface: #FFFFFF;
+  --color-ink: #1A1A1A;
+  --color-ink-light: #6B7280;
+  --color-ink-faint: #9CA3AF;
+  --color-rule: #E8E2D9;
+  --color-rule-light: #F0EBE3;
+  --color-accent: #2D6A4F;
+  --color-accent-light: #D8F3DC;
+  --color-accent-muted: #52B788;
+  --color-danger: #C53030;
+  --color-danger-light: #FED7D7;
+
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Menlo', monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ledger-style hairline rule */
+.ledger-rule {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+/* Date input styling for light theme */
+input[type="date"],
+input[type="number"] {
+  color-scheme: light;
+}
+
+/* Remove number input spinners on mobile */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Safe area padding for notched phones */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

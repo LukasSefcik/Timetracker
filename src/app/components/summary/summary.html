@@ -3,19 +3,32 @@
   (monthChange)="onMonthChange($event)"
 />
 
-<div class="px-4 space-y-4">
-  <div class="bg-slate-800 rounded-lg p-6 text-center">
-    <p class="text-slate-400 text-sm mb-1">Odpracované hodiny</p>
-    <p class="text-4xl font-bold text-cyan-400">{{ summary().totalHours }}h</p>
+<div class="px-5 space-y-3">
+  <!-- Total hours — hero card -->
+  <div class="bg-surface rounded-xl border border-rule p-6">
+    <p class="text-[11px] font-medium text-ink-faint uppercase tracking-wider mb-2">Odpracované hodiny</p>
+    <p class="text-5xl font-mono font-light text-ink tabular-nums tracking-tighter">
+      {{ summary().totalHours }}<span class="text-2xl text-ink-faint ml-0.5">h</span>
+    </p>
   </div>
 
-  <div class="bg-slate-800 rounded-lg p-6 text-center">
-    <p class="text-slate-400 text-sm mb-1">Hodinová sadzba</p>
-    <p class="text-2xl font-semibold text-white">{{ summary().hourlyRate }} €</p>
-  </div>
+  <!-- Rate + Total in a row -->
+  <div class="grid grid-cols-2 gap-3">
+    <div class="bg-surface rounded-xl border border-rule p-5">
+      <p class="text-[11px] font-medium text-ink-faint uppercase tracking-wider mb-2">Sadzba</p>
+      <p class="text-2xl font-mono font-light text-ink tabular-nums">
+        {{ summary().hourlyRate }}<span class="text-sm text-ink-faint ml-0.5">€/h</span>
+      </p>
+    </div>
 
-  <div class="bg-slate-800 rounded-lg p-6 text-center">
-    <p class="text-slate-400 text-sm mb-1">Celková suma</p>
-    <p class="text-4xl font-bold text-green-400">{{ summary().totalAmount }} €</p>
+    <div class="bg-surface rounded-xl border border-accent/30 p-5 relative overflow-hidden">
+      <div class="absolute inset-0 bg-accent/[0.03]"></div>
+      <div class="relative">
+        <p class="text-[11px] font-medium text-accent uppercase tracking-wider mb-2">Celkom</p>
+        <p class="text-2xl font-mono font-medium text-accent tabular-nums">
+          {{ summary().totalAmount }}<span class="text-sm font-normal ml-0.5">€</span>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
