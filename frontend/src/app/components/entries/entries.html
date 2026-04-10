@@ -1,0 +1,94 @@
+<app-month-selector
+  [month]="currentMonth()"
+  (monthChange)="onMonthChange($event)"
+/>
+
+<!-- Add form -->
+<div class="flex gap-2 mb-4 px-4">
+  <input
+    type="date"
+    [ngModel]="newDate()"
+    (ngModelChange)="newDate.set($event)"
+    class="flex-1 bg-slate-800 text-white rounded px-3 py-2 border border-slate-600 focus:border-cyan-400 focus:outline-none"
+  />
+  <input
+    type="number"
+    [ngModel]="newHours()"
+    (ngModelChange)="newHours.set($event)"
+    placeholder="Hodiny"
+    step="0.5"
+    min="0"
+    max="24"
+    class="w-24 bg-slate-800 text-white rounded px-3 py-2 border border-slate-600 focus:border-cyan-400 focus:outline-none"
+  />
+  <button
+    (click)="addEntry()"
+    class="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded font-medium cursor-pointer"
+  >
+    Pridať
+  </button>
+</div>
+
+<!-- Entries list -->
+<div class="flex flex-col gap-1 px-4">
+  @for (entry of entries(); track entry.id) {
+    <div
+      class="flex items-center justify-between bg-slate-800 rounded px-3 py-2"
+    >
+      @if (editingId() === entry.id) {
+        <input
+          type="date"
+          [ngModel]="editDate()"
+          (ngModelChange)="editDate.set($event)"
+          class="bg-slate-700 text-white rounded px-2 py-1 border border-slate-500 text-sm"
+        />
+        <input
+          type="number"
+          [ngModel]="editHours()"
+          (ngModelChange)="editHours.set($event)"
+          step="0.5"
+          min="0"
+          max="24"
+          class="w-20 bg-slate-700 text-white rounded px-2 py-1 border border-slate-500 text-sm"
+        />
+        <div class="flex gap-1">
+          <button
+            (click)="saveEdit()"
+            class="text-green-400 hover:text-green-300 cursor-pointer px-1"
+          >
+            ✓
+          </button>
+          <button
+            (click)="cancelEdit()"
+            class="text-slate-400 hover:text-white cursor-pointer px-1"
+          >
+            ✕
+          </button>
+        </div>
+      } @else {
+        <span class="text-slate-200 text-sm">{{ entry.date }}</span>
+        <span class="text-cyan-400 text-sm font-medium"
+          >{{ entry.hours }}h</span
+        >
+        <div class="flex gap-1">
+          <button
+            (click)="startEdit(entry)"
+            class="text-slate-400 hover:text-white cursor-pointer px-1"
+          >
+            ✏️
+          </button>
+          <button
+            (click)="deleteEntry(entry.id)"
+            class="text-slate-400 hover:text-red-400 cursor-pointer px-1"
+          >
+            🗑️
+          </button>
+        </div>
+      }
+    </div>
+  } @empty {
+    <p class="text-slate-500 text-center py-4">
+      Žiadne záznamy pre tento mesiac
+    </p>
+  }
+</div>
